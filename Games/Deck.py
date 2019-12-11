@@ -1,6 +1,7 @@
 from enum import Enum, auto, unique
 from random import shuffle
 
+
 class Deck:
     def __init__(self):
         super().__init__()
@@ -8,6 +9,7 @@ class Deck:
         for suit in Suit:
             for rank in Rank:
                 self.cards.append(Card(rank, suit))
+        self.shuffle()
 
     def shuffle(self):
         self.cards.clear()
@@ -55,8 +57,6 @@ class Rank(Enum):
     JACK = "jack"
     QUEEN = "queen"
     KING = "king"
-
-
 
 
 @unique
