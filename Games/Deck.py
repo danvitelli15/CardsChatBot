@@ -36,32 +36,51 @@ class Card:
         self.suit = suit
 
     def toString(self):
-        return self.rank.value + " of " + self.suit.value
+        return self.rank.getName() + " of " + self.suit.value
 
-    def compareTo(self, card):
+    def equals(self, card):
         return self.rank == card.rank and self.suit == card.suit
 
+    def compareTo(self, card):
+        return self.rank - card.rank
 
-@unique
-class Rank(Enum):
-    ACE = "ace"
-    TWO = "two"
-    THREE = "three"
-    FOUR = "four"
-    FIVE = "five"
-    SIX = "six"
-    SEVEN = "seven"
-    EIGHT = "eight"
-    NINE = "nine"
-    TEN = "ten"
-    JACK = "jack"
-    QUEEN = "queen"
-    KING = "king"
+    @unique
+    class Rank(Enum):
+        TWO = 0
+        THREE = 1
+        FOUR = 2
+        FIVE = 3
+        SIX = 4
+        SEVEN = 5
+        EIGHT = 6
+        NINE = 7
+        TEN = 8
+        JACK = 9
+        QUEEN = 10
+        KING = 11
+        ACE = 12
 
+        def getName(self):
+            names = {
+                0: "two",
+                1: "three",
+                2: "four",
+                3: "five",
+                4: "six",
+                5: "seven",
+                6: "eight",
+                7: "nine",
+                8: "ten",
+                9: "jack",
+                10: "queen",
+                11: "king",
+                12: "ace"
+            }
+            return names[self.value]
 
-@unique
-class Suit(Enum):
-    HEARTS = "hearts"
-    DIAMONDS = "diamonds"
-    CLUBS = "clubs"
-    SPADES = "spades"
+    @unique
+    class Suit(Enum):
+        HEARTS = "hearts"
+        DIAMONDS = "diamonds"
+        CLUBS = "clubs"
+        SPADES = "spades"

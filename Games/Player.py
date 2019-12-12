@@ -1,3 +1,6 @@
+from Games.Deck import Card
+
+
 class Player:
     def __init__(self, name, buyIn):
         super().__init__()
@@ -27,12 +30,23 @@ class Player:
             super().__init__()
             self.cards = cards
 
-        def draw(self, card):
+        def draw(self, card: Card):
             self.cards.append(card)
             return self.cards
 
         def discard(self):
             self.cards.clear()
+            return self.cards
+
+        def order(self):
+            if len(self.cards) > 1:
+                for j in range(len(self.cards)):
+                    card = self.cards.pop(0)
+                    index = 0
+                    for i in range(len(self.cards)):
+                        if self.cards[i].rank < card.rank:
+                            index = i
+                    self.cards.insert(index, card)
             return self.cards
 
         def toString(self):
